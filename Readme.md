@@ -1,6 +1,6 @@
-# assertj-kotlin
+# assertj-core-kotlin
 
-a simple AssertJ wrapper for Kotlin
+a thin and simple AssertJ wrapper for Kotlin
 
 ## Motivation
 
