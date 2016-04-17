@@ -23,12 +23,26 @@ object KotlinAssertions {
 
     fun assertThat(str: String): AbstractCharSequenceAssert<*, String> = StringAssert(str)
 
+    fun assertThat(actual: Byte): AbstractByteAssert<*> = ByteAssert(actual)
+    fun assertThat(actual: ByteArray): AbstractByteArrayAssert<*> = ByteArrayAssert(actual)
+
+    fun assertThat(actual: Short): AbstractShortAssert<*> = ShortAssert(actual)
+    fun assertThat(actual: ShortArray): AbstractShortArrayAssert<*> = ShortArrayAssert(actual)
+
     fun assertThat(actual: Int): AbstractIntegerAssert<*> = IntegerAssert(actual)
+    fun assertThat(actual: IntArray): AbstractIntArrayAssert<*> = IntArrayAssert(actual)
+
     fun assertThat(actual: Long): AbstractLongAssert<*> = LongAssert(actual)
+    fun assertThat(actual: LongArray): AbstractLongArrayAssert<*> = LongArrayAssert(actual)
+
     fun assertThat(actual: Float): AbstractFloatAssert<*> = FloatAssert(actual)
+    fun assertThat(actual: FloatArray): AbstractFloatArrayAssert<*> = FloatArrayAssert(actual)
+
     fun assertThat(actual: Double): AbstractDoubleAssert<*> = DoubleAssert(actual)
+    fun assertThat(actual: DoubleArray): AbstractDoubleArrayAssert<*> = DoubleArrayAssert(actual)
 
     fun assertThat(actual: Boolean): AbstractBooleanAssert<*> = BooleanAssert(actual)
+    fun assertThat(actual: BooleanArray): AbstractBooleanArrayAssert<*> = BooleanArrayAssert(actual)
 
     fun <T> assertThat(actual: Iterator<T>): AbstractIterableAssert<*, out Iterable<T>, T> = IterableAssert(actual)
 
