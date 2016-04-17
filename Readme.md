@@ -1,0 +1,29 @@
+# assertj-kotlin
+
+a simple AssertJ wrapper for Kotlin
+
+## Motivation
+
+AssertJ ist not usable from Kotlin by default, because there are a lot of overload ambiguity errors.
+
+## Usage
+
+Just import `assertThat` from `KotlinAssertions` and most of the thins should work again:
+
+```
+import org.assertj.core.api.KotlinAssertions.assertThat
+import org.junit.Test
+
+class KotlinAssertionsExample {
+
+    @Test
+    fun simpleAssertion() {
+        assertThat(10L.toString()).isEqualTo("10")
+    }
+
+}
+```
+
+## Disclaimer
+
+The software is not yet a complete wrapper. Your contributions are welcome.
