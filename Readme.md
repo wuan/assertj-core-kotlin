@@ -1,4 +1,4 @@
-# assertj-core-kotlin
+# assertj-core-kotlin [![Build Status](https://travis-ci.org/wuan/assertj-core-kotlin.svg?branch=master)](https://travis-ci.org/wuan/assertj-core-kotlin) [![Coverage Status](https://coveralls.io/repos/github/wuan/assertj-core-kotlin/badge.svg?branch=master)](https://coveralls.io/github/wuan/assertj-core-kotlin?branch=master)
 
 a thin and simple AssertJ wrapper for Kotlin
 
