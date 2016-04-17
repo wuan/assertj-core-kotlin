@@ -3,14 +3,10 @@ language: java
 install:
   - ./gradlew test
 
-script:
-  - ./gradlew test
-
 jdk:
   - oraclejdk8
   - oraclejdk7
   - openjdk7
-  - openjdk6
 
 after_success:
   - ./gradlew jacocoTestReport coveralls
