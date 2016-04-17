@@ -75,6 +75,19 @@ class KotlinAssertionsTest {
     }
 
     @Test
+    fun shouldCreateIterableAssert() {
+        assertThat(assertThat(object : Iterator<String> {
+            override fun hasNext(): Boolean {
+                throw UnsupportedOperationException()
+            }
+
+            override fun next(): String {
+                throw UnsupportedOperationException()
+            }
+        })).isNotNull().isInstanceOf(AbstractIterableAssert::class.java)
+    }
+
+    @Test
     fun shouldCreateStringAssert() {
         assertThat(assertThat("foo")).isNotNull().isInstanceOf(AbstractCharSequenceAssert::class.java)
     }
