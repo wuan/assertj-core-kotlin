@@ -9,6 +9,6 @@ jdk:
   - openjdk7
 
 after_success:
-  - ./gradlew test jacocoTestReport coveralls
+  - ./gradlew jacocoTestReport coveralls
 
 sudo: false
