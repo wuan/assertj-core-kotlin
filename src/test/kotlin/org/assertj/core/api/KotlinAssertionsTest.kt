@@ -88,6 +88,11 @@ class KotlinAssertionsTest {
     }
 
     @Test
+    fun shouldCreateSequenceAssert() {
+        assertThat(assertThat(listOf("1", "2").asSequence())).isNotNull().isInstanceOf(AbstractIterableAssert::class.java)
+    }
+
+    @Test
     fun shouldCreateStringAssert() {
         assertThat(assertThat("foo")).isNotNull().isInstanceOf(AbstractCharSequenceAssert::class.java)
     }
