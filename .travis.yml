@@ -1,7 +1,7 @@
 language: java
 
 install:
-  - ./gradlew build
+  - ./gradlew assemble test
 
 jdk:
   - oraclejdk8
@@ -9,6 +9,6 @@ jdk:
   - openjdk7
 
 after_success:
-  - ./gradlew jacocoTestReport coveralls
+  - ./gradlew test jacocoTestReport coveralls
 
 sudo: false
