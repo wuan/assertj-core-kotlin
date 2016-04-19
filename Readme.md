@@ -1,4 +1,4 @@
-# assertj-core-kotlin [![Build Status](https://travis-ci.org/wuan/assertj-core-kotlin.svg?branch=master)](https://travis-ci.org/wuan/assertj-core-kotlin) [![Coverage Status](https://coveralls.io/repos/github/wuan/assertj-core-kotlin/badge.svg?branch=master)](https://coveralls.io/github/wuan/assertj-core-kotlin?branch=master) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.wuerl.kotlin/assertj-core-kotlin/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/net.wuerl.kotlin/assertj-core-kotlin)
+# assertj-core-kotlin [![Build Status](https://travis-ci.org/wuan/assertj-core-kotlin.svg?branch=master)](https://travis-ci.org/wuan/assertj-core-kotlin) [![Coverage Status](https://coveralls.io/repos/github/wuan/assertj-core-kotlin/badge.svg?branch=master)](https://coveralls.io/github/wuan/assertj-core-kotlin?branch=master) [![Maven Central](https://img.shields.io/maven-central/v/net.wuerl.kotlin/assertj-core-kotlin.svg?maxAge=2592000?style=plastic)](http://search.maven.org/#search|ga|1|g%3A%22net.wuerl.kotlin%22%20AND%20a%3A%22assertj-core-kotlin%22)
 
 
 a thin and simple AssertJ wrapper for Kotlin
