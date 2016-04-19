@@ -18,7 +18,6 @@
 
 package org.assertj.core.api
 
-@Suppress("unused")
 object KotlinAssertions {
 
     fun assertThat(str: String): AbstractCharSequenceAssert<*, String> = StringAssert(str)
