@@ -22,7 +22,7 @@ apply plugin: 'jacoco'
 
 archivesBaseName = 'assertj-core-kotlin'
 group = 'net.wuerl.kotlin'
-version = '0.1.1'
+version = '0.1.2'
 
 repositories {
     jcenter()
