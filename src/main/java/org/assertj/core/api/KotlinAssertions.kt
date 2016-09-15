@@ -43,8 +43,8 @@ object KotlinAssertions {
     fun assertThat(actual: Boolean): AbstractBooleanAssert<*> = BooleanAssert(actual)
     fun assertThat(actual: BooleanArray): AbstractBooleanArrayAssert<*> = BooleanArrayAssert(actual)
 
-    fun <T> assertThat(actual: Iterator<T>): AbstractIterableAssert<*, out Iterable<T>, T> = IterableAssert(actual)
-    fun <T> assertThat(actual: Sequence<T>): AbstractIterableAssert<*, out Iterable<T>, T> = IterableAssert(actual.iterator())
+    fun <T> assertThat(actual: Iterator<T>) = IterableAssert(actual)
+    fun <T> assertThat(actual: Sequence<T>) = IterableAssert(actual.iterator())
 
     fun <T> assertThat(actual: T): AbstractObjectAssert<*, T> = ObjectAssert(actual)
 }
