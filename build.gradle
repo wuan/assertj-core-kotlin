@@ -12,7 +12,7 @@ buildscript {
 
 plugins {
     id 'com.github.kt3k.coveralls' version '2.3.1'
-    id 'findbugs'
+//    id 'findbugs'
 }
 
 apply plugin: 'kotlin'
@@ -45,10 +45,10 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 jacocoTestReport {
-  reports {
-    xml.enabled = true // coveralls plugin depends on xml format report
-    html.enabled = false
-  }
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = false
+    }
 }
 
 jacoco {
@@ -67,10 +67,10 @@ signing {
 }
 
 if (!hasProperty('sonatypeUsername')) {
-	ext.sonatypeUsername = ''
+    ext.sonatypeUsername = ''
 }
 if (!hasProperty('sonatypePassword')) {
-	ext.sonatypePassword = ''
+    ext.sonatypePassword = ''
 }
 
 uploadArchives {
