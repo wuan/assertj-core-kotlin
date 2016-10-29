@@ -47,5 +47,7 @@ object KotlinAssertions {
     fun <T> assertThat(actual: Iterator<T>) = IterableAssert(actual)
     fun <T> assertThat(actual: Sequence<T>) = IterableAssert(actual.iterator())
 
+    fun <K, V> assertThat(actual: Map<K, V>) = MapAssert(actual)
+
     fun <T> assertThat(actual: T): AbstractObjectAssert<*, T> = ObjectAssert(actual)
 }

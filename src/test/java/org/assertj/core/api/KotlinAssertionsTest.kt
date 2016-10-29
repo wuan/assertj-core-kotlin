@@ -98,6 +98,11 @@ class KotlinAssertionsTest {
     }
 
     @Test
+    fun shouldCreateMapAssert() {
+        assertThat(assertThat(mapOf(Pair("key", "value")))).isNotNull().isInstanceOf(MapAssert::class.java)
+    }
+
+    @Test
     fun shouldCreateStringAssert() {
         assertThat(assertThat("foo")).isNotNull().isInstanceOf(AbstractCharSequenceAssert::class.java)
     }
