@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.1.0'
+    ext.kotlin_version = '1.1.2'
 
     repositories {
         jcenter()
@@ -22,7 +22,7 @@ apply plugin: 'jacoco'
 
 archivesBaseName = 'assertj-core-kotlin'
 group = 'net.wuerl.kotlin'
-version = '0.2.0'
+version = '0.2.1'
 
 repositories {
     jcenter()
@@ -30,7 +30,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile 'org.assertj:assertj-core:2.5.0'
+    compile 'org.assertj:assertj-core:3.7.0'
     testCompile 'junit:junit:4.12'
 }
 
@@ -52,7 +52,7 @@ jacocoTestReport {
 }
 
 jacoco {
-    toolVersion = '0.7.6.201602180812'
+    toolVersion = '0.7.9'
 }
 
 artifacts {
