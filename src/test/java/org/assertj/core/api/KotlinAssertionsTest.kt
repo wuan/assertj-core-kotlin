@@ -2,6 +2,7 @@ package org.assertj.core.api
 
 import org.assertj.core.api.KotlinAssertions.assertThat
 import org.junit.Test
+import java.math.BigDecimal
 import java.math.BigInteger
 
 class KotlinAssertionsTest {
@@ -111,6 +112,11 @@ class KotlinAssertionsTest {
     @Test
     fun shouldCreateBigIntegerAssert() {
         assertThat(assertThat(BigInteger.ONE)).isNotNull().isInstanceOf(AbstractBigIntegerAssert::class.java)
+    }
+
+    @Test
+    fun shouldCreateBigDecimalAssert() {
+        assertThat(assertThat(BigDecimal.ONE)).isNotNull().isInstanceOf(AbstractBigDecimalAssert::class.java)
     }
 
 }

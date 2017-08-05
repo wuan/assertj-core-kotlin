@@ -18,6 +18,7 @@
 
 package org.assertj.core.api
 
+import java.math.BigDecimal
 import java.math.BigInteger
 
 object KotlinAssertions {
@@ -46,6 +47,8 @@ object KotlinAssertions {
     fun assertThat(actual: BooleanArray): AbstractBooleanArrayAssert<*> = BooleanArrayAssert(actual)
 
     fun assertThat(actual: BigInteger): AbstractBigIntegerAssert<*> = BigIntegerAssert(actual)
+
+    fun assertThat(actual: BigDecimal): AbstractBigDecimalAssert<*> = BigDecimalAssert(actual)
 
     fun <T> assertThat(actual: Iterable<T>) = IterableAssert(actual)
     fun <T> assertThat(actual: Iterator<T>) = IterableAssert(actual)
