@@ -40,6 +40,9 @@ object KotlinAssertions {
     fun assertThat(actual: Double): AbstractDoubleAssert<*> = DoubleAssert(actual)
     fun assertThat(actual: DoubleArray): AbstractDoubleArrayAssert<*> = DoubleArrayAssert(actual)
 
+    fun assertThat(actual: Char): AbstractCharacterAssert<*> = CharacterAssert(actual)
+    fun assertThat(actual: CharArray): AbstractCharArrayAssert<*> = CharArrayAssert(actual)
+
     fun assertThat(actual: Boolean): AbstractBooleanAssert<*> = BooleanAssert(actual)
     fun assertThat(actual: BooleanArray): AbstractBooleanArrayAssert<*> = BooleanArrayAssert(actual)
 

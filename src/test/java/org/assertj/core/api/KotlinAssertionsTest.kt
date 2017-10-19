@@ -75,6 +75,16 @@ class KotlinAssertionsTest {
     }
 
     @Test
+    fun shouldCreateCharAssert() {
+        assertThat(assertThat('a')).isNotNull().isInstanceOf(AbstractCharacterAssert::class.java)
+    }
+
+    @Test
+    fun shouldCreateCharArrayAssert() {
+        assertThat(assertThat(CharArray(0))).isNotNull().isInstanceOf(AbstractCharArrayAssert::class.java)
+    }
+
+    @Test
     fun shouldCreateIterableAssert() {
         assertThat(assertThat(listOf("1", "2", "3"))).isNotNull().isInstanceOf(AbstractIterableAssert::class.java)
     }
