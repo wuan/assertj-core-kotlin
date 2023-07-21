@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.github.kt3k.coveralls' version '2.8.1'
+    id 'com.github.kt3k.coveralls' version '2.12.2'
 //    id 'findbugs'
 }
 
@@ -22,20 +22,20 @@ apply plugin: 'jacoco'
 
 archivesBaseName = 'assertj-core-kotlin'
 group = 'net.wuerl.kotlin'
-version = '0.2.1'
+version = '0.3.1'
 
 repositories {
     jcenter()
 }
 
 jacoco {
-    toolVersion = "0.7.9"
+    toolVersion = "0.8.9"
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile 'org.assertj:assertj-core:3.7.0'
-    testCompile 'junit:junit:4.12'
+    compile 'org.assertj:assertj-core:3.24.2'
+    testCompile 'junit:junit:4.13.2'
 }
 
 task sourcesJar(type: Jar) {
@@ -53,10 +53,6 @@ jacocoTestReport {
         xml.enabled = true // coveralls plugin depends on xml format report
         html.enabled = false
     }
-}
-
-jacoco {
-    toolVersion = '0.7.9'
 }
 
 artifacts {
