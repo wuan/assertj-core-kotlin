@@ -18,6 +18,11 @@
 
 package org.assertj.core.api
 
+import org.assertj.core.api.IterableAssert.toIterable
+import java.time.Instant
+import kotlin.time.Duration
+import kotlin.time.toJavaDuration
+
 object KotlinAssertions {
 
     fun assertThat(str: String): AbstractCharSequenceAssert<*, String> = StringAssert(str)
@@ -44,10 +49,14 @@ object KotlinAssertions {
     fun assertThat(actual: BooleanArray): AbstractBooleanArrayAssert<*> = BooleanArrayAssert(actual)
 
     fun <T> assertThat(actual: Iterable<T>) = IterableAssert(actual)
-    fun <T> assertThat(actual: Iterator<T>) = IterableAssert(actual)
-    fun <T> assertThat(actual: Sequence<T>) = IterableAssert(actual.iterator())
+    fun <T> assertThat(actual: Iterator<T>) = assertThat(toIterable(actual))
+    fun <T> assertThat(actual: Sequence<T>) = assertThat(toIterable(actual.iterator()))
 
     fun <K, V> assertThat(actual: Map<K, V>) = MapAssert(actual)
 
     fun <T> assertThat(actual: T): AbstractObjectAssert<*, T> = ObjectAssert(actual)
+
+    fun assertThat(actual: Instant) = InstantAssert(actual)
+    fun assertThat(actual: java.time.Duration) = DurationAssert(actual)
+    fun assertThat(actual: Duration) = assertThat(actual.toJavaDuration())
 }

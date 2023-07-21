@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.1.2-2'
+    ext.kotlin_version = '1.8.22'
 
     repositories {
         jcenter()
@@ -16,7 +16,7 @@ plugins {
 }
 
 apply plugin: 'kotlin'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'signing'
 apply plugin: 'jacoco'
 
@@ -33,32 +33,34 @@ jacoco {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile 'org.assertj:assertj-core:3.24.2'
-    testCompile 'junit:junit:4.13.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'org.assertj:assertj-core:3.24.2'
+    testImplementation 'junit:junit:4.13.2'
 }
 
-task sourcesJar(type: Jar) {
+/*tasks.register('sourcesJar', Jar) {
     classifier = 'sources'
     from sourceSets.main.allSource
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
+tasks.register('javadocJar', Jar) {
+    dependsOn javadoc
     classifier = 'javadoc'
     from javadoc.destinationDir
-}
+}*/
 
 jacocoTestReport {
+    dependsOn test
     reports {
-        xml.enabled = true // coveralls plugin depends on xml format report
-        html.enabled = false
+        xml.required = true
+        csv.required = false
+        html.required = false
     }
 }
 
-artifacts {
-    archives jar
-    archives javadocJar
-    archives sourcesJar
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
 signing {
@@ -73,42 +75,56 @@ if (!hasProperty('sonatypePassword')) {
     ext.sonatypePassword = ''
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
 
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: sonatypeUsername, password: sonatypePassword)
-            }
+            groupId 'net.wuerl.kotlin'
+            artifactId 'assertj-core-kotlin'
+            version '0.3.1'
 
-            pom.project {
-                name 'assertj-core-kotlin'
-                packaging 'jar'
-                description 'assertj-core-kotlin is a thin wrapper to use AssertJ Core from Kotlin'
-                url 'http://github.com/wuan/assertj-core-kotlin/'
-
-                scm {
-                    url 'scm:git@github.com:wuan/assertj-core-kotlin.git'
-                    connection 'scm:git@github.com:wuan/assertj-core-kotlin.git'
-                    developerConnection 'scm:git@github.com:wuan/assertj-core-kotlin.git'
-                }
+            pom {
+                name = 'assertj-core-kotlin'
+                description = 'assertj-core-kotlin is a thin wrapper to use AssertJ Core from Kotlin'
+                url = 'http://github.com/wuan/assertj-core-kotlin/'
 
                 licenses {
                     license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                        distribution 'repo'
+                        name = 'The Apache Software License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution = 'repo'
                     }
                 }
 
                 developers {
                     developer {
-                        id 'wuan'
-                        name 'Andreas Würl'
+                        id = 'wuan'
+                        name = 'Andreas Würl'
                     }
+                }
+
+                scm {
+                    url = 'scm:git@github.com:wuan/assertj-core-kotlin.git'
+                    connection = 'scm:git@github.com:wuan/assertj-core-kotlin.git'
+                    developerConnection = 'scm:git@github.com:wuan/assertj-core-kotlin.git'
                 }
             }
         }
     }
+
+    repositories {
+        maven {
+            name = 'YourRepo'
+            url = uri('https://oss.sonatype.org/service/local/staging/deploy/maven2/')
+            credentials {
+                username = project.findProperty('sonatypeUsername') ?: System.getenv('sonatypeUsername')
+                password = project.findProperty('sonatypePassword') ?: System.getenv('sonatypePassword')
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
 }
