@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.1.2-2'
+    ext.kotlin_version = '1.9.10'
 
     repositories {
         jcenter()
@@ -11,13 +11,14 @@ buildscript {
 }
 
 plugins {
-    id 'com.github.kt3k.coveralls' version '2.8.1'
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+    id 'com.github.kt3k.coveralls' version '2.12.2'
 //    id 'findbugs'
 }
 
 apply plugin: 'kotlin'
-apply plugin: 'maven'
-apply plugin: 'signing'
 apply plugin: 'jacoco'
 
 archivesBaseName = 'assertj-core-kotlin'
@@ -29,7 +30,7 @@ repositories {
 }
 
 jacoco {
-    toolVersion = "0.7.9"
+    toolVersion = "0.8.10"
 }
 
 dependencies {
@@ -38,14 +39,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
 jacocoTestReport {
@@ -55,10 +51,6 @@ jacocoTestReport {
     }
 }
 
-jacoco {
-    toolVersion = '0.7.9'
-}
-
 artifacts {
     archives jar
     archives javadocJar
@@ -66,38 +58,26 @@ artifacts {
 }
 
 signing {
-    required { gradle.taskGraph.hasTask("uploadArchives") }
-    sign configurations.archives
+    sign publishing.publications.mavenJave
 }
 
-if (!hasProperty('sonatypeUsername')) {
-    ext.sonatypeUsername = ''
-}
-if (!hasProperty('sonatypePassword')) {
-    ext.sonatypePassword = ''
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: sonatypeUsername, password: sonatypePassword)
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'assertj-core-kotlin'
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
             }
-
-            pom.project {
-                name 'assertj-core-kotlin'
-                packaging 'jar'
+            pom {
+                name = 'assertj-core-kotlin'
                 description 'assertj-core-kotlin is a thin wrapper to use AssertJ Core from Kotlin'
                 url 'http://github.com/wuan/assertj-core-kotlin/'
-
-                scm {
-                    url 'scm:git@github.com:wuan/assertj-core-kotlin.git'
-                    connection 'scm:git@github.com:wuan/assertj-core-kotlin.git'
-                    developerConnection 'scm:git@github.com:wuan/assertj-core-kotlin.git'
-                }
-
                 licenses {
                     license {
                         name 'The Apache Software License, Version 2.0'
@@ -105,12 +85,16 @@ uploadArchives {
                         distribution 'repo'
                     }
                 }
-
                 developers {
                     developer {
                         id 'wuan'
                         name 'Andreas Würl'
                     }
+                }
+                scm {
+                    connection 'scm:git@github.com:wuan/assertj-core-kotlin.git'
+                    developerConnection 'scm:git@github.com:wuan/assertj-core-kotlin.git'
+                    url 'scm:git@github.com:wuan/assertj-core-kotlin.git'
                 }
             }
         }
